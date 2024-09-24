@@ -13,6 +13,7 @@ import {store} from '../redux/store';
 import ChatScreen from '../Screens/ChatScreen';
 import Profile from '../Screens/Profile';
 import testing from '../Screens/Testing';
+import OnBoardingScreen from '../Screens/OnBoardingScreen';
 
 export type RootStackParams = {
   Home: undefined;
@@ -24,10 +25,15 @@ export type RootStackParams = {
       };
   Register: undefined;
   Login: undefined;
-  Chat: undefined;
+  Chat:
+    | undefined
+    | {
+        reciever_Id: string;
+      };
   Search_Modal: undefined;
   Profile: undefined;
   Testing: undefined;
+  OnBoarding: undefined;
 };
 
 const stack = createNativeStackNavigator<RootStackParams>();
@@ -49,6 +55,13 @@ const StackNavigator = () => {
             name="Splash"
             component={TeamsSplashscreen}
           />
+
+          <stack.Screen
+            options={{headerShown: false}}
+            name="OnBoarding"
+            component={OnBoardingScreen}
+          />
+
           <stack.Screen
             options={{headerShown: false}}
             name="Testing"
