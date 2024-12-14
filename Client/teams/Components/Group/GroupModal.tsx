@@ -15,7 +15,7 @@ import useDebounce from '../../hooks/useDebounce';
 import {FlatList} from 'react-native';
 import axiosInstance from '../../middleware/axiosConfig/axiosConfig';
 
-type SearchProps = NativeStackScreenProps<RootStackParams, 'Search_Modal'>;
+type SearchProps = NativeStackScreenProps<RootStackParams, 'GroupModal'>;
 
 type item = {
   id: string;
@@ -24,7 +24,7 @@ type item = {
   designation: string;
 };
 
-const Modal = ({navigation}: SearchProps) => {
+const GroupModal = ({navigation}: SearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [data, setData] = useState<item[]>([]);
 
@@ -62,8 +62,7 @@ const Modal = ({navigation}: SearchProps) => {
   }, [data, debounceSearchQuery]);
 
   const handleItemOnPress = ({id}: {id: string}) => {
-    navigation.navigate('MeetingScreen', {reciever_Id: id});
-    navigation.navigate('Chat', {reciever_Id: id});
+    navigation.navigate('Testing', {reciever_Id: id});
   };
 
   const renderItem = ({item}: {item: item}) => {
@@ -103,7 +102,7 @@ const Modal = ({navigation}: SearchProps) => {
   );
 };
 
-export default Modal;
+export default GroupModal;
 
 const styles = StyleSheet.create({
   txt: {

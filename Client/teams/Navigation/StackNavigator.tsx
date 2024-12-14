@@ -13,6 +13,8 @@ import {store} from '../redux/store';
 import ChatScreen from '../Screens/ChatScreen';
 import Profile from '../Screens/Profile';
 import testing from '../Screens/Testing';
+import OnBoardingScreen from '../Screens/OnBoardingScreen';
+import GroupModal from '../Components/Group/GroupModal';
 
 export type RootStackParams = {
   Home: undefined;
@@ -24,10 +26,22 @@ export type RootStackParams = {
       };
   Register: undefined;
   Login: undefined;
-  Chat: undefined;
+  Chat:
+    | undefined
+    | {
+        reciever_Id: string;
+        flag: string;
+        group_id?: string | undefined;
+      };
   Search_Modal: undefined;
   Profile: undefined;
-  Testing: undefined;
+  Testing:
+    | undefined
+    | {
+        reciever_Id: string;
+      };
+  OnBoarding: undefined;
+  GroupModal: undefined;
 };
 
 const stack = createNativeStackNavigator<RootStackParams>();
@@ -49,11 +63,20 @@ const StackNavigator = () => {
             name="Splash"
             component={TeamsSplashscreen}
           />
+
           <stack.Screen
             options={{headerShown: false}}
-            name="Testing"
-            component={testing}
+            name="OnBoarding"
+            component={OnBoardingScreen}
           />
+
+          <stack.Screen
+            options={{headerShown: false}}
+            name="GroupModal"
+            component={GroupModal}
+          />
+
+          <stack.Screen name="Testing" component={testing} />
 
           <stack.Screen
             options={{headerShown: true, headerBackVisible: true}}
